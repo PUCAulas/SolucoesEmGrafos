@@ -1,4 +1,3 @@
-```
 package main.java;
 
 public class Estrada {
@@ -24,4 +23,3 @@ public class Estrada {
         return peso;
     }
 }
-```
