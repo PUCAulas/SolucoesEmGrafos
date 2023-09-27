@@ -1,4 +1,3 @@
-```
 package main.java;
 
 public class Cidade {
@@ -18,4 +17,3 @@ public class Cidade {
         return nome;
     }
 }
-```
