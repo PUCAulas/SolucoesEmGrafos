@@ -2,14 +2,16 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Set;
+import java.util.HashSet;
 
 public class Grafo {
 	private List<Cidade> cidades;
     private List<Estrada> estradas;
 
     public Grafo() {
-        cidades = new ArrayList<>();
-        estradas = new ArrayList<>();
+        this.cidades = new ArrayList<>();
+        this.estradas = new ArrayList<>();
     }
 
     public void adicionarCidade(Cidade cidade) {
@@ -22,19 +24,18 @@ public class Grafo {
 
     public boolean existeEstrada(Cidade cidadeOrigem, Cidade cidadeDestino) {
         for (Estrada estrada : estradas) {
-            if (estrada.obterOrigem() == cidadeOrigem && estrada.obterDestino() == cidadeDestino) {
+            if (estrada.obterOrigem().equals(cidadeOrigem) && estrada.obterDestino().equals(cidadeDestino)) {
                 return true;
             }
         }
         return false;
     }
 
-    //public List<Cidade> cidadesInalcancaveis()
-        
-    
-    //public List<Cidade> recomendarVisitas()
-       
-
-    //public List<Cidade> menorRota(Cidade rodoviaria)
-        
+    public Set<Cidade> cidadesInalcancaveis() {
+        Set<Cidade> inalcancaveis = new HashSet<>(cidades);
+        for (Estrada estrada : estradas) {
+            inalcancaveis.remove(estrada.obterDestino());
+        }
+        return inalcancaveis;
+    }
 }
