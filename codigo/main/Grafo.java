@@ -2,11 +2,9 @@ package main.java;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
-import java.util.HashSet;
 
 public class Grafo {
-	private List<Cidade> cidades;
+    private List<Cidade> cidades;
     private List<Estrada> estradas;
 
     public Grafo() {
@@ -24,18 +22,36 @@ public class Grafo {
 
     public boolean existeEstrada(Cidade cidadeOrigem, Cidade cidadeDestino) {
         for (Estrada estrada : estradas) {
-            if (estrada.obterOrigem().equals(cidadeOrigem) && estrada.obterDestino().equals(cidadeDestino)) {
+            if (estrada.getOrigem() == cidadeOrigem && estrada.getDestino() == cidadeDestino) {
                 return true;
             }
         }
         return false;
     }
 
-    public Set<Cidade> cidadesInalcancaveis() {
-        Set<Cidade> inalcancaveis = new HashSet<>(cidades);
-        for (Estrada estrada : estradas) {
-            inalcancaveis.remove(estrada.obterDestino());
+    public List<Cidade> cidadesInalcancaveis() {
+        List<Cidade> inalcancaveis = new ArrayList<>();
+        for (Cidade cidade : cidades) {
+            boolean alcancaOutraCidade = false;
+            for (Cidade outraCidade : cidades) {
+                if (!cidade.equals(outraCidade) && existeEstrada(cidade, outraCidade)) {
+                    alcancaOutraCidade = true;
+                    break;
+                }
+            }
+            if (!alcancaOutraCidade) {
+                inalcancaveis.add(cidade);
+            }
         }
         return inalcancaveis;
     }
+    
+    //public List<String> recomendarVisitas() {
+        //Problema do caixeiro-viajante (Traveling Salesman Problem)
+        //return null;
+    //}
+
+    //public List<Cidade> menorRota(Cidade partida) {
+        //return null;
+    //}
 }
