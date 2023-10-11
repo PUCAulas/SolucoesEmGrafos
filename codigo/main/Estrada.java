@@ -1,7 +1,7 @@
 package main.java;
 
 public class Estrada {
-	private Cidade origem;
+    private Cidade origem;
     private Cidade destino;
     private int peso;
 
