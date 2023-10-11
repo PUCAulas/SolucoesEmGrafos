@@ -22,7 +22,7 @@ public class Grafo {
 
     public boolean existeEstrada(Cidade cidadeOrigem, Cidade cidadeDestino) {
         for (Estrada estrada : estradas) {
-            if (estrada.getOrigem() == cidadeOrigem && estrada.getDestino() == cidadeDestino) {
+            if (estrada.obterOrigem() == cidadeOrigem && estrada.obterDestino() == cidadeDestino) {
                 return true;
             }
         }
@@ -46,12 +46,26 @@ public class Grafo {
         return inalcancaveis;
     }
     
-    //public List<String> recomendarVisitas() {
-        //Problema do caixeiro-viajante (Traveling Salesman Problem)
-        //return null;
-    //}
+    public List<String> recomendarVisitas() {
+        List<String> recomendacoes = new ArrayList<>();
+        
+        for (Cidade cidade : cidades) {
+            recomendacoes.add("Visite a cidade " + cidade.obterNome());
+        }
+        
+        // Recomendar viagens ao longo das estradas
+        for (Estrada estrada : estradas) {
+            recomendacoes.add("Viaje de " + estrada.obterOrigem().obterNome() + " para " +
+                estrada.obterDestino().obterNome());
+        }
+        
+        return recomendacoes;
+    }
 
-    //public List<Cidade> menorRota(Cidade partida) {
-        //return null;
-    //}
+    public List<Cidade> menorRota(Cidade partida) {
+    	//Caixeiro viajante usando Dijkstra (inicia todo mundo com infinito) e ciclo Hamiltoniano 
+    	//Verificar se o grafo tem um ciclo. Se não tem ciclo, retornar mensagem dizendo que não é possível. Se tiver ciclo, identificar a solução que tem menor peso.
+		return null;
+    }
+   
 }
