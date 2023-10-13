@@ -42,8 +42,8 @@ public class Main {
             }
          
             System.out.print("Pressione Enter para continuar...");
-            scanner.nextLine(); // Limpe a nova linha pendente.
-            scanner.nextLine(); // Aguarde até que o Enter seja pressionado.
+            scanner.nextLine(); 
+            scanner.nextLine(); 
         } while (escolha != 5);
     }
 
