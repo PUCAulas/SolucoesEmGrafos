@@ -13,10 +13,10 @@ public class Main {
         int escolha;
         do {
             System.out.println("Menu:");
-            System.out.println("1. Verificar Existência de Estrada");
-            System.out.println("2. Cidades Inalcançáveis");
-            System.out.println("3. Recomendação de Visitação em Todas as Cidades e Estradas");
-            System.out.println("4. Recomendação de Rota de Menor Distância");
+            System.out.println("1. Verificar existência de estrada");
+            System.out.println("2. Cidades inalcançáveis");
+            System.out.println("3. Recomendação de visitação em todas as cidades e estradas");
+            System.out.println("4. Recomendação de rota de menor distância");
             System.out.println("5. Sair");
             System.out.print("Escolha uma opção: ");
             escolha = scanner.nextInt();
@@ -76,6 +76,7 @@ public class Main {
         return grafo;
     }
 
+    //1. Verificar existência de estrada
     private static void verificarExistenciaDeEstrada(Grafo grafo, Scanner scanner) {
         System.out.print("\nDigite o nome da cidade de origem: ");
         String origemNome = scanner.next();
@@ -96,6 +97,7 @@ public class Main {
         }
     }
 
+    //2. Cidades inalcançáveis
     private static void listarCidadesInalcançaveis(Grafo grafo) {
         List<Cidade> inalcancaveis = grafo.cidadesInalcancaveis();
 
@@ -109,6 +111,7 @@ public class Main {
         }
     }
 
+    //3. Recomendação de visitação em todas as cidades e estradas
     private static void recomendarVisitação(Grafo grafo) {
         List<String> recomendacoes = grafo.recomendarVisitas();
         for (String recomendacao : recomendacoes) {
@@ -116,6 +119,7 @@ public class Main {
         }
     }
 
+    //4. Recomendação de rota de menor distância
     private static void recomendarRotaDeMenorDistancia(Grafo grafo, Scanner scanner) {
         System.out.print("\nDigite o nome da cidade de partida: ");
         String partidaNome = scanner.next();
