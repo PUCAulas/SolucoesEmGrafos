@@ -41,7 +41,7 @@ public class Main {
                     System.out.println("Opção inválida. Tente novamente.\n");
             }
          
-            System.out.print("Pressione Enter para continuar...");
+            System.out.print("\nPressione Enter para continuar...\n");
             scanner.nextLine(); 
             scanner.nextLine(); 
         } while (escolha != 5);
@@ -77,7 +77,7 @@ public class Main {
     }
 
     private static void verificarExistenciaDeEstrada(Grafo grafo, Scanner scanner) {
-        System.out.print("Digite o nome da cidade de origem: ");
+        System.out.print("\nDigite o nome da cidade de origem: ");
         String origemNome = scanner.next();
         System.out.print("Digite o nome da cidade de destino: ");
         String destinoNome = scanner.next();
@@ -87,12 +87,12 @@ public class Main {
 
         if (origem != null && destino != null) {
             if (grafo.existeEstrada(origem, destino)) {
-                System.out.println("Existe uma estrada entre " + origemNome + " e " + destinoNome + "\n");
+                System.out.println("\nExiste uma estrada entre " + origemNome + " e " + destinoNome + "\n");
             } else {
-                System.out.println("Não existe uma estrada entre " + origemNome + " e " + destinoNome);
+                System.out.println("\nNão existe uma estrada entre " + origemNome + " e " + destinoNome);
             }
         } else {
-            System.out.println("Cidades não encontradas.");
+            System.out.println("\nCidades não encontradas.");
         }
     }
 
@@ -100,9 +100,9 @@ public class Main {
         List<Cidade> inalcancaveis = grafo.cidadesInalcancaveis();
 
         if (inalcancaveis.isEmpty()) {
-            System.out.println("Todas as cidades são alcançáveis a partir de outras cidades.");
+            System.out.println("\nTodas as cidades são alcançáveis a partir de outras cidades.");
         } else {
-            System.out.println("Cidades inalcançáveis:");
+            System.out.println("\nCidades inalcançáveis:");
             for (Cidade cidade : inalcancaveis) {
                 System.out.println(cidade.obterNome());
             }
@@ -117,22 +117,22 @@ public class Main {
     }
 
     private static void recomendarRotaDeMenorDistancia(Grafo grafo, Scanner scanner) {
-        System.out.print("Digite o nome da cidade de partida: ");
+        System.out.print("\nDigite o nome da cidade de partida: ");
         String partidaNome = scanner.next();
         Cidade partida = grafo.getCidadePorNome(partidaNome);
 
         if (partida != null) {
             List<Cidade> menorRota = grafo.menorRota(partida);
             if (menorRota != null) {
-                System.out.println("Rota de menor distância a partir de " + partidaNome + ":");
+                System.out.println("\nRota de menor distância a partir de " + partidaNome + ":");
                 for (Cidade cidade : menorRota) {
                     System.out.println(cidade.obterNome());
                 }
             } else {
-                System.out.println("Não foi possível encontrar uma rota de menor distância.");
+                System.out.println("\nNão foi possível encontrar uma rota de menor distância.");
             }
         } else {
-            System.out.println("Cidade de partida não encontrada.");
+            System.out.println("\nCidade de partida não encontrada.");
         }
     }
 }
