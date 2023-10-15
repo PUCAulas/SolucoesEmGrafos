@@ -1,7 +1,12 @@
 package main.java;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Queue;
+import java.util.Set;
+
 
 public class Grafo {
     private List<Cidade> cidades;
@@ -19,7 +24,9 @@ public class Grafo {
     public void adicionarEstrada(Estrada estrada) {
         estradas.add(estrada);
     }
-
+    
+    // Método que confere se existe estrada de qualquer cidade para qualquer cidade (a)
+    
     public boolean existeEstrada(Cidade cidadeOrigem, Cidade cidadeDestino) {
         for (Estrada estrada : estradas) {
             if (estrada.obterOrigem() == cidadeOrigem && estrada.obterDestino() == cidadeDestino) {
@@ -29,6 +36,7 @@ public class Grafo {
         return false;
     }
 
+    // No caso de não ser possível chegar em alguma cidade via transporte terrestre, o método identifica quais cidades são inalcançáveis (b)
     public List<Cidade> cidadesInalcancaveis() {
         List<Cidade> inalcancaveis = new ArrayList<>();
         for (Cidade cidade : cidades) {
@@ -53,7 +61,7 @@ public class Grafo {
             recomendacoes.add("Visite a cidade " + cidade.obterNome());
         }
         
-        // Recomendar viagens ao longo das estradas
+        // Método que recomenda uma visita em todas as cidades e todas as estradas (c)
         for (Estrada estrada : estradas) {
             recomendacoes.add("Viaje de " + estrada.obterOrigem().obterNome() + " para " +
                 estrada.obterDestino().obterNome());
@@ -62,10 +70,41 @@ public class Grafo {
         return recomendacoes;
     }
 
-    public List<Cidade> menorRota(Cidade partida) {
-    	//Caixeiro viajante usando Dijkstra (inicia todo mundo com infinito) e ciclo Hamiltoniano 
-    	//Verificar se o grafo tem um ciclo. Se não tem ciclo, retornar mensagem dizendo que não é possível. Se tiver ciclo, identificar a solução que tem menor peso.
-		return null;
+    // Método que recomenda uma rota para um passageiro que deseja partir da rodoviária, percorrer todas as cidades conectadas e retornar à rodoviária, percorrendo a menordistância possível (d)
+    public List<Cidade> menorRota(Cidade rodoviaria) {
+        List<Cidade> rota = new ArrayList<>();
+        Set<Cidade> visitadas = new HashSet<>();
+        Queue<Cidade> fila = new LinkedList<>();
+        fila.add(rodoviaria);
+        visitadas.add(rodoviaria);
+
+        while (!fila.isEmpty()) {
+            Cidade cidadeAtual = fila.poll();
+            rota.add(cidadeAtual);
+
+            for (Cidade cidadeVizinha : cidadesConectadas(cidadeAtual)) {
+                if (!visitadas.contains(cidadeVizinha)) {
+                    fila.add(cidadeVizinha);
+                    visitadas.add(cidadeVizinha);
+                }
+            }
+        }
+
+        rota.add(rodoviaria); // Volta à rodoviaria para completar o ciclo
+
+        return rota;
+    }
+
+    private List<Cidade> cidadesConectadas(Cidade cidade) {
+        List<Cidade> cidadesConectadas = new ArrayList<>();
+        for (Estrada estrada : estradas) {
+            if (estrada.obterOrigem() == cidade) {
+                cidadesConectadas.add(estrada.obterDestino());
+            } else if (estrada.obterDestino() == cidade) {
+                cidadesConectadas.add(estrada.obterOrigem());
+            }
+        }
+        return cidadesConectadas;
     }
    
     public List<Cidade> getCidades() {
@@ -79,5 +118,15 @@ public class Grafo {
             }
         }
         return null;
+    }
+    
+    public int calcularDistanciaTotal(Cidade origem, Cidade destino) {
+        for (Estrada estrada : estradas) {
+            if ((estrada.obterOrigem() == origem && estrada.obterDestino() == destino)
+                    || (estrada.obterOrigem() == destino && estrada.obterDestino() == origem)) {
+                return estrada.obterPeso();
+            }
+        }
+        return Integer.MAX_VALUE;
     }
 }
