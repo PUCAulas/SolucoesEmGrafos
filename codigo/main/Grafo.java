@@ -25,8 +25,7 @@ public class Grafo {
         estradas.add(estrada);
     }
     
-    // Método que confere se existe estrada de qualquer cidade para qualquer cidade (a)
-    
+    //Método que confere se existe estrada de qualquer cidade para qualquer cidade (a)
     public boolean existeEstrada(Cidade cidadeOrigem, Cidade cidadeDestino) {
         for (Estrada estrada : estradas) {
             if (estrada.obterOrigem() == cidadeOrigem && estrada.obterDestino() == cidadeDestino) {
@@ -36,7 +35,7 @@ public class Grafo {
         return false;
     }
 
-    // No caso de não ser possível chegar em alguma cidade via transporte terrestre, o método identifica quais cidades são inalcançáveis (b)
+    //No caso de não ser possível chegar em alguma cidade via transporte terrestre, o método identifica quais cidades são inalcançáveis (b)
     public List<Cidade> cidadesInalcancaveis() {
         List<Cidade> inalcancaveis = new ArrayList<>();
         for (Cidade cidade : cidades) {
@@ -54,8 +53,7 @@ public class Grafo {
         return inalcancaveis;
     }
     
-    // Método que recomenda uma visita em todas as cidades e todas as estradas (c)
-    
+    //Método que recomenda uma visita em todas as cidades e todas as estradas (c)
     public List<String> recomendarVisitas() {
         List<String> recomendacoes = new ArrayList<>();
         
@@ -71,7 +69,7 @@ public class Grafo {
         return recomendacoes;
     }
 
-    // Método que recomenda uma rota para um passageiro que deseja partir da rodoviária, percorrer todas as cidades conectadas e retornar à rodoviária, percorrendo a menordistância possível (d)
+    //Método que recomenda uma rota para um passageiro que deseja partir da rodoviária, percorrer todas as cidades conectadas e retornar à rodoviária, percorrendo a menordistância possível (d)
     public List<Cidade> menorRota(Cidade rodoviaria) {
         List<Cidade> rota = new ArrayList<>();
         Set<Cidade> visitadas = new HashSet<>();
@@ -91,7 +89,7 @@ public class Grafo {
             }
         }
 
-        rota.add(rodoviaria); // Volta à rodoviaria para completar o ciclo
+        rota.add(rodoviaria); 
 
         return rota;
     }
