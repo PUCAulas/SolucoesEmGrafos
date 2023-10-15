@@ -54,6 +54,8 @@ public class Grafo {
         return inalcancaveis;
     }
     
+    // Método que recomenda uma visita em todas as cidades e todas as estradas (c)
+    
     public List<String> recomendarVisitas() {
         List<String> recomendacoes = new ArrayList<>();
         
@@ -61,7 +63,6 @@ public class Grafo {
             recomendacoes.add("Visite a cidade " + cidade.obterNome());
         }
         
-        // Método que recomenda uma visita em todas as cidades e todas as estradas (c)
         for (Estrada estrada : estradas) {
             recomendacoes.add("Viaje de " + estrada.obterOrigem().obterNome() + " para " +
                 estrada.obterDestino().obterNome());
