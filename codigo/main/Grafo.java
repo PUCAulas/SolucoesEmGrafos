@@ -40,8 +40,8 @@ public class Grafo {
         List<Cidade> inalcancaveis = new ArrayList<>();
         for (Cidade cidade : cidades) {
             boolean alcancaOutraCidade = false;
-            for (Cidade outraCidade : cidades) {
-                if (!cidade.equals(outraCidade) && existeEstrada(cidade, outraCidade)) {
+            for (Estrada estrada : estradas) {
+                if (estrada.obterOrigem().equals(cidade) || estrada.obterDestino().equals(cidade)) {
                     alcancaOutraCidade = true;
                     break;
                 }
