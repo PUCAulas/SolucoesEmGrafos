@@ -3,48 +3,55 @@ package test.java;
 import main.java.Cidade;
 import main.java.Estrada;
 import main.java.Grafo;
+import org.junit.Before;
+import org.junit.Test;
 
+import static org.junit.Assert.*;
 import java.util.List;
 
-import org.junit.Before;
-import org.junit.jupiter.api.Test;
-
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertFalse;
-import static org.junit.Assert.assertTrue;
-
 public class GrafoTest {
+
     private Grafo grafo;
-    private Cidade cidadeA;
-    private Cidade cidadeB;
-    private Cidade cidadeC;
 
     @Before
     public void setUp() {
         grafo = new Grafo();
-        cidadeA = new Cidade(1, "Cidade A");
-        cidadeB = new Cidade(2, "Cidade B");
-        cidadeC = new Cidade(3, "Cidade C");
+    }
+
+    @Test
+    public void testExisteEstrada() {
+        Cidade cidadeA = new Cidade(1, "Cidade A");
+        Cidade cidadeB = new Cidade(2, "Cidade B");
+        Cidade cidadeC = new Cidade(3, "Cidade C");
+
         grafo.adicionarCidade(cidadeA);
         grafo.adicionarCidade(cidadeB);
         grafo.adicionarCidade(cidadeC);
-        grafo.adicionarEstrada(new Estrada(cidadeA, cidadeB, 100));
-    }
 
-    @Test
-    public void testExisteEstradaExistente() {
+        Estrada estradaAB = new Estrada(cidadeA, cidadeB, 10);
+        grafo.adicionarEstrada(estradaAB);
+
         assertTrue(grafo.existeEstrada(cidadeA, cidadeB));
-    }
-
-    @Test
-    public void testExisteEstradaNaoExistente() {
         assertFalse(grafo.existeEstrada(cidadeA, cidadeC));
     }
 
     @Test
     public void testCidadesInalcancaveis() {
+        Cidade cidadeA = new Cidade(1, "Cidade A");
+        Cidade cidadeB = new Cidade(2, "Cidade B");
+        Cidade cidadeC = new Cidade(3, "Cidade C");
+
+        grafo.adicionarCidade(cidadeA);
+        grafo.adicionarCidade(cidadeB);
+        grafo.adicionarCidade(cidadeC);
+
+        Estrada estradaAB = new Estrada(cidadeA, cidadeB, 10);
+
+        grafo.adicionarEstrada(estradaAB);
+
         List<Cidade> inalcancaveis = grafo.cidadesInalcancaveis();
+
         assertEquals(1, inalcancaveis.size());
-        assertEquals(cidadeC, inalcancaveis.get(0));
+        assertTrue(inalcancaveis.contains(cidadeC));
     }
 }
