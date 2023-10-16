@@ -35,10 +35,10 @@ public class Main {
                     recomendarRotaDeMenorDistancia(grafo, scanner);
                     break;
                 case 5:
-                    System.out.println("Saindo...\n");
+                    System.out.println("\nSaindo...\n");
                     break;
                 default:
-                    System.out.println("Opção inválida. Tente novamente.\n");
+                    System.out.println("\nOpção inválida. Tente novamente.\n");
             }
          
             System.out.print("\nPressione Enter para continuar...\n");
