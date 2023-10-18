@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
     public static void main(String[] args) {
-        Grafo grafo = lerGrafoDeArquivo("grafos.txt");
+        Grafo grafo = lerGrafoDeArquivo("hamiltoniano.txt");
         Scanner scanner = new Scanner(System.in);
 
         int escolha;
@@ -119,7 +119,7 @@ public class Main {
         }
     }
 
-    //4. Recomendação de rota de menor distância
+  //4. Recomendação de rota de menor distância
     private static void recomendarRotaDeMenorDistancia(Grafo grafo, Scanner scanner) {
         System.out.print("\nDigite o nome da cidade de partida: ");
         String partidaNome = scanner.next();
@@ -128,10 +128,16 @@ public class Main {
         if (partida != null) {
             List<Cidade> menorRota = grafo.menorRota(partida);
             if (menorRota != null) {
+                int distanciaTotal = 0;
                 System.out.println("\nRota de menor distância a partir de " + partidaNome + ":");
-                for (Cidade cidade : menorRota) {
-                    System.out.println(cidade.obterNome());
+                for (int i = 0; i < menorRota.size() - 1; i++) {
+                    Cidade cidadeOrigem = menorRota.get(i);
+                    Cidade cidadeDestino = menorRota.get(i + 1);
+                    int distancia = grafo.calcularDistanciaTotal(cidadeOrigem, cidadeDestino);
+                    distanciaTotal += distancia;
+                    System.out.println("Viaje de " + cidadeOrigem.obterNome() + " para " + cidadeDestino.obterNome() + " (Distância: " + distancia + " km)");
                 }
+                System.out.println("Distância Total da Rota: " + distanciaTotal + " km");
             } else {
                 System.out.println("\nNão foi possível encontrar uma rota de menor distância.");
             }
