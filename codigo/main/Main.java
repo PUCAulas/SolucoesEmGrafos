@@ -7,7 +7,7 @@ import java.util.*;
 
 public class Main {
 	public static void main(String[] args) {
-	    Grafo grafo = lerGrafoDeArquivo("hamiltoniano.txt");
+	    Grafo grafo = lerGrafoDeArquivo("grafos.txt");
 	    Scanner scanner = new Scanner(System.in);
 
 	    int escolha;
