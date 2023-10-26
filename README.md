@@ -1,17 +1,17 @@
 [![Open in Visual Studio Code](https://classroom.github.com/assets/open-in-vscode-718a45dd9cf7e7f842a935f5ebbe5719a5e09af4491e668f4dbf3b35d5cca122.svg)](https://classroom.github.com/online_ide?assignment_repo_id=11963041&assignment_repo_type=AssignmentRepo)
-# Nome do projeto
-Escreva um ou dois parágrafos resumindo o objetivo do seu projeto.
+# Soluções em Grafos
+O projeto "Soluções em Grafos" envolve o desenvolvimento de uma aplicação Java para resolver problemas de transporte rodoviário internacional usando grafos. Os objetivos incluem verificar rotas entre cidades, identificar cidades inalcançáveis, dar recomendações de visitação e sugerir a rota mais curta para passageiros
 
 ## Alunos integrantes da equipe
 
-* Nome completo do aluno 1
-* Nome completo do aluno 2
-* Nome completo do aluno 3
-* Nome completo do aluno 4
-* Nome completo do aluno 4
-* Nome completo do aluno 4
+* Beatriz de Oliveira Silveira
+* Joaquim de Moura Thomaz Neto
+* Maria Eduarda Chrispim Santana
+* Matheus Pereira
+* Vitoria Ye Miao
+
 
 ## Professor responsável 
 
-* Nome completo do professor 1
+* Johnatan Alves de Oliveira
 
